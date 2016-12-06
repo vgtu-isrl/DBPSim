@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{03A35BE3-A0B0-488B-9126-88426033C5BB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DBPSim.RuleEngine</RootNamespace>
+    <AssemblyName>DBPSim.RuleEngine</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collision\CollisionHightestPriority.cs" />
+    <Compile Include="Collision\CollisionSolverRandom.cs" />
+    <Compile Include="Datasource\DatabaseDataSourceProvider.cs" />
+    <Compile Include="Datasource\DataSourceProvider.cs" />
+    <Compile Include="Datasource\XmlDataSourceProvider.cs" />
+    <Compile Include="EndExecutionException.cs" />
+    <Compile Include="Execution\ExecutionType.cs" />
+    <Compile Include="Execution\RuleEventType.cs" />
+    <Compile Include="ExpandoObjectExtension.cs" />
+    <Compile Include="ForceExecutionStopException.cs" />
+    <Compile Include="Memory\MemoryEntryPoint.cs" />
+    <Compile Include="Memory\WatchPoints.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Execution\ExecutionResult.cs" />
+    <Compile Include="Execution\RuleExecutor.cs" />
+    <Compile Include="Execution\ExecutionResultCollection.cs" />
+    <Compile Include="RandomExtension.cs" />
+    <Compile Include="RulesHelper.cs" />
+    <Compile Include="Collision\CollisionSolverBase.cs" />
+    <Compile Include="Collision\CollisionSolverDateTime.cs" />
+    <Compile Include="Collision\CollisionSolverPriority.cs" />
+    <Compile Include="RuleBase.cs" />
+    <Compile Include="RuleEventArgs.cs" />
+    <Compile Include="RuleNonConditional.cs" />
+    <Compile Include="RuleEngineEvents.cs" />
+    <Compile Include="Translator\FactExistsTranslator.cs" />
+    <Compile Include="Translator\RuleEventFiringTranslator.cs" />
+    <Compile Include="Translator\RuleEndTranslator.cs" />
+    <Compile Include="Translator\RuleForceStopTranslator.cs" />
+    <Compile Include="Translator\RuleVariablesTranslator.cs" />
+    <Compile Include="Translator\WatchPointTranslator.cs" />
+    <Compile Include="Validation\Validator.cs" />
+    <EmbeddedResource Include="Template\RuleTemplateVB.txt" />
+    <Compile Include="RuleConditional.cs" />
+    <Compile Include="Execution\RuleExecutionResult.cs" />
+    <Compile Include="RuleCollection.cs" />
+    <Compile Include="RulesEngine.cs" />
+    <Compile Include="Template\RuleTemplateBase.cs" />
+    <Compile Include="Memory\WorkingMemory.cs" />
+    <Compile Include="Translator\IRuleTranslator.cs" />
+    <Compile Include="Translator\RuleBodyTranslator.cs" />
+    <Compile Include="Translator\RuleConditionTranslator.cs" />
+    <Compile Include="Translator\RuleMemoryVariablesTranslator.cs" />
+    <Compile Include="Translator\RuleTranslator.cs" />
+    <Compile Include="Common\XmlHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Template\RuleTemplateCSharp.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Template\RuleTemplate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagrams\CollisionSolver.cd" />
+    <None Include="ClassDiagrams\Controling.cd" />
+    <None Include="ClassDiagrams\ExecutionHistory.cd" />
+    <None Include="ClassDiagrams\WorkingMemory.cd" />
+    <None Include="ClassDiagrams\Datasources.cd" />
+    <None Include="ClassDiagrams\Execution.cd" />
+    <None Include="ClassDiagrams\Memory.cd" />
+    <None Include="ClassDiagrams\Validator.cd" />
+    <None Include="ClassDiagrams\Full.cd" />
+    <None Include="ClassDiagrams\Translator.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="README\TODO.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BBNGs\BBNGs.csproj">
+      <Project>{2ea7a158-bd18-4c57-8436-76beb55cd04d}</Project>
+      <Name>BBNGs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBPSim.Resources\DBPSim.Resources.csproj">
+      <Project>{9e17aa13-7bea-401c-8c16-cb3df7fab67a}</Project>
+      <Name>DBPSim.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

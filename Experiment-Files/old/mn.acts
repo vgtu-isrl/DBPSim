@@ -1,0 +1,74 @@
+<RuleCollection>
+	<Rule>
+		<Id>1</Id>
+		<Enabled>True</Enabled>
+		<Title>Init</Title>
+		<Priority>1</Priority>
+		<Condition>true</Condition>
+		<Body>
+<![CDATA[
+Create("Resursai")
+$Resursai.LaukiantysAutomobiliai =5
+$Resursai.Operatoriai = 1
+$Resursai.ApsaugosDarbuotojai=1
+Create("Started")
+		]]>
+		</Body>
+	</Rule>
+	<Rule>
+		<Id>2</Id>
+		<Enabled>True</Enabled>
+		<Title>UzsakymoAutorizavimas</Title>
+		<Priority>1</Priority>
+		<Condition/>
+		<Body><![CDATA[]]></Body>
+	</Rule>
+	<Rule>
+		<Id>3</Id>
+		<Enabled>True</Enabled>
+		<Title>KrovosSpausdinimasApsaugai</Title>
+		<Priority>1</Priority>
+		<Condition/>
+		<Body><![CDATA[]]></Body>
+	</Rule>
+	<Rule>
+		<Id>4</Id>
+		<Enabled>True</Enabled>
+		<Title>AutotransportoPatikraAtvykimas</Title>
+		<Priority>1</Priority>
+		<Condition/>
+		<Body/>
+	</Rule>
+	<Rule>
+		<Id>5</Id>
+		<Enabled>True</Enabled>
+		<Title>AutocisternuUzpylimas</Title>
+		<Priority>1</Priority>
+		<Condition/>
+		<Body><![CDATA[]]></Body>
+	</Rule>
+	<Rule>
+		<Id>6</Id>
+		<Enabled>True</Enabled>
+		<Title>DokumentuSpausdinimas</Title>
+		<Priority>1</Priority>
+		<Condition/>
+		<Body/>
+	</Rule>
+	<Rule>
+		<Id>6</Id>
+		<Enabled>True</Enabled>
+		<Title>DokumentuPasirasymasIrPerdavimasVairuotojui</Title>
+		<Priority>1</Priority>
+		<Condition/>
+		<Body><![CDATA[]]></Body>
+	</Rule>
+	<Rule>
+		<Id>6</Id>
+		<Enabled>True</Enabled>
+		<Title>AutotransportoPatikraIsvykimas</Title>
+		<Priority>1</Priority>
+		<Condition></Condition>
+		<Body><![CDATA[]]></Body>
+	</Rule>
+</RuleCollection>

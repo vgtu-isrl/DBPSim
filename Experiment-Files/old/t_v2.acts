@@ -1,0 +1,127 @@
+<RuleCollection><Rule><Id>1</Id><Enabled>True</Enabled><Title>init_Pradėti</Title><Priority>1</Priority><Condition>Not Fact.Exists("Pradzia")</Condition><Body><![CDATA[
+If Not Fact.Exists("TurimosPrekes") Then
+  Create2("TurimosPrekes",10)
+  $TurimosPrekes.Prekes = FindAmount($Uzsakymas.Pavadinimas,"Amount",10)
+$TurimosPrekes.Pavadinimas = $Uzsakymas.Pavadinimas
+End If
+If Not Fact.Exists("Duration") Then
+  Create2("Duration",10)
+  $Duration.Time = 0
+End If
+
+If Not Fact.Exists("Bankas") Then
+ CREATE("Bankas")
+$Bankas.bankas =0
+End If
+
+#TurimosPrekes = $TurimosPrekes.Prekes
+
+Create2("Pradzia",10)
+$Duration.Time=$Duration.Time+ ActivityDuration
+#Duration = $Duration.Time]]></Body></Rule><Rule><Id>2</Id><Enabled>True</Enabled><Title>Priimti Užsakymą</Title><Priority>2</Priority><Condition>Fact.Exists("Uzsakymas")</Condition><Body><![CDATA[CREATE2("UzsakomosPrekes",10)
+$UzsakomosPrekes.Prekes = $Uzsakymas.Prekes
+$UzsakomosPrekes.Pavadinimas=$Uzsakymas.Pavadinimas
+#UzsakomosPrekes=$UzsakomosPrekes.Prekes
+RETRACT("Uzsakymas",10)
+$Duration.Time=$Duration.Time+ ActivityDuration
+#Duration = $Duration.Time]]></Body></Rule><Rule><Id>3</Id><Enabled>True</Enabled><Title>Papildyti sandėlį</Title><Priority>3</Priority><Condition>Fact.Exists("Papildyti")</Condition><Body><![CDATA[Dim papildymas= 200-$TurimosPrekes.Prekes
+
+Dim prekesKainos = New System.Collections.Generic.Dictionary(Of String, Integer) From { {"H100",50},{"P77",70 }, {"J2",80} }
+
+Dim skirtumas = papildymas*prekesKainos($UzsakomosPrekes.Pavadinimas)
+
+$Bankas.bankas = $Bankas.bankas - skirtumas
+#Bankas =  $Bankas.bankas
+
+ FILL($TurimosPrekes.Pavadinimas,-papildymas,10)
+
+$TurimosPrekes.Prekes=FindAmount($TurimosPrekes.Pavadinimas,"Amount",10)
+
+#TurimosPrekes = $TurimosPrekes.Prekes
+RETRACT("Papildyti",10)
+RETRACT("Pradzia",10)
+$Duration.Time=$Duration.Time+ ActivityDuration
+#Duration = $Duration.Time]]></Body></Rule><Rule><Id>4</Id><Enabled>True</Enabled><Title>Užsakyti papildomai</Title><Priority>4</Priority><Condition><![CDATA[$TurimosPrekes.Prekes<$UzsakomosPrekes.Prekes]]></Condition><Body><![CDATA[Create2("LauktiPrekiu",10)
+$Duration.Time=$Duration.Time+ ActivityDuration
+#Duration = $Duration.Time
+
+
+
+]]></Body></Rule><Rule><Id>5</Id><Enabled>True</Enabled><Title>Vykdyti Užsakymą</Title><Priority>5</Priority><Condition>$TurimosPrekes.Prekes&gt;=$UzsakomosPrekes.Prekes</Condition><Body><![CDATA[ ALLOCATE($TurimosPrekes.Pavadinimas,$UzsakomosPrekes.Prekes,10)
+
+ If Not Fact.Exists("ID") Then
+  Create2("ID",10)
+End If
+$ID.Value=ID
+$TurimosPrekes.Prekes=FindAmount($TurimosPrekes.Pavadinimas,"Amount",10)
+#TurimosPrekes = $TurimosPrekes.Prekes
+If  $TurimosPrekes.Prekes<=50 Then
+  Create2("Papildyti",10)
+End If
+If $TurimosPrekes.Prekes>50 Then
+  RETRACT("Pradzia",10)
+End If
+Create2("Saskaita",10)
+$Duration.Time=$Duration.Time+ ActivityDuration
+#Duration = $Duration.Time]]></Body></Rule><Rule><Id>99</Id><Enabled>True</Enabled><Title>Baigti</Title><Priority>99</Priority><Condition>Fact.Exists("Pabaiga")</Condition><Body><![CDATA[RETRACT("Pabaiga",10)
+$Duration.Time=$Duration.Time+ ActivityDuration
+#Duration = $Duration.Time
+RETRACT("ID",10)
+RETRACT("TurimosPrekes",10)
+RETRACT("Duration",10)]]></Body></Rule><Rule><Id>6</Id><Enabled>True</Enabled><Title>Priimti Papildomas Prekes</Title><Priority>6</Priority><Condition>Fact.Exists("LauktiPrekiu")</Condition><Body><![CDATA[Dim rand = new Random()
+
+Dim add=$UzsakomosPrekes.Prekes-$TurimosPrekes.Prekes+rand.Next(10,50)
+FILL($TurimosPrekes.Pavadinimas,-add,10)
+
+
+$TurimosPrekes.Prekes=FindAmount($TurimosPrekes.Pavadinimas,"Amount",10)
+#TurimosPrekes = $TurimosPrekes.Prekes
+RETRACT("LauktiPrekiu",10)
+$Duration.Time=$Duration.Time+ ActivityDuration
+#Duration = $Duration.Time]]></Body></Rule><Rule><Id>98</Id><Enabled>True</Enabled><Title>Atšaukti užsakymą</Title><Priority>98</Priority><Condition>Fact.Exists("Atsaukti")</Condition><Body><![CDATA[RETRACT("Atsaukti",10)
+
+CANCEL($TurimosPrekes.Pavadinimas, $ID.Value,$UzsakomosPrekes.Prekes,10)
+
+RETRACT("UzsakomosPrekes",10)
+$TurimosPrekes.Prekes = FindAmount($TurimosPrekes.Pavadinimas,"Amount",10)
+#TurimosPrekes=$TurimosPrekes.Prekes
+Create2("Pabaiga",10)
+$Duration.Time=$Duration.Time+ ActivityDuration
+#Duration = $Duration.Time]]></Body></Rule><Rule><Id>7</Id><Enabled>True</Enabled><Title>Sukurti Sąskaitą</Title><Priority>7</Priority><Condition>Fact.Exists("Saskaita")</Condition><Body><![CDATA[Dim rand = new Random()
+
+Dim prekesKainos = New System.Collections.Generic.Dictionary(Of String, Integer) From { {"H100",50},{"P77",70 }, {"J2",80} }
+
+Dim kaina = prekesKainos($UzsakomosPrekes.Pavadinimas)
+$TurimosPrekes.Kaina=$TurimosPrekes.Prekes*kaina
+#Saskaita=$TurimosPrekes.Kaina
+RETRACT("Saskaita",10)
+Create2("SiustiSaskaita",10)
+$Duration.Time=$Duration.Time+ ActivityDuration
+#Duration = $Duration.Time]]></Body></Rule><Rule><Id>8</Id><Enabled>True</Enabled><Title>Pritaikyti Nuolaidą</Title><Priority>8</Priority><Condition>$TurimosPrekes.Kaina&gt;= New System.Random().Next(7000,15000)</Condition><Body><![CDATA[$TurimosPrekes.Kaina=$TurimosPrekes.Kaina-($TurimosPrekes.Kaina*0.1)
+#Saskaita=$TurimosPrekes.Kaina
+$Duration.Time=$Duration.Time+ ActivityDuration
+#Duration = $Duration.Time]]></Body></Rule><Rule><Id>9</Id><Enabled>True</Enabled><Title>Išsiųsti sąskaitą</Title><Priority>9</Priority><Condition>Fact.Exists("SiustiSaskaita")</Condition><Body><![CDATA[RETRACT("SiustiSaskaita",10)
+Create2("Laukti",10)
+$Duration.Time=$Duration.Time+ ActivityDuration
+#Duration = $Duration.Time]]></Body></Rule><Rule><Id>10</Id><Enabled>True</Enabled><Title>Laukti apmokėjimo</Title><Priority>10</Priority><Condition>Fact.Exists("Laukti")</Condition><Body><![CDATA[RETRACT("Laukti",10)
+Dim rand=new Random()
+Dim prop = rand.Next(1,10)
+If prop<8
+  Create2("UzbaigtiUzsakyma",10)
+  Dim prekesKainos = New System.Collections.Generic.Dictionary(Of String, Integer) From { {"H100",50},{"P77",70 }, {"J2",80} }
+$Bankas.bankas = $Bankas.bankas + $TurimosPrekes.kaina
+ #Bankas = $Bankas.bankas
+
+End If
+If prop>=8
+  Create2("Atsaukti",10)
+End If
+
+$Duration.Time=$Duration.Time+ ActivityDuration
+#Duration = $Duration.Time]]></Body></Rule><Rule><Id>11</Id><Enabled>True</Enabled><Title>Pristatyti Prekes</Title><Priority>11</Priority><Condition>Fact.Exists("UzbaigtiUzsakyma")</Condition><Body><![CDATA[RETRACT("UzbaigtiUzsakyma",10)
+RETRACT("UzsakomosPrekes",10)
+RELEASE($TurimosPrekes.Pavadinimas, 32)
+Create2("Pabaiga",10)
+
+$Duration.Time=$Duration.Time+ ActivityDuration
+#Duration = $Duration.Time]]></Body></Rule></RuleCollection>

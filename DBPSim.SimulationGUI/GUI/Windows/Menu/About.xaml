@@ -1,0 +1,11 @@
+﻿<Window x:Class="DBPSim.SimulationGUI.Windows.Menu.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Icon="../../Images/program.ico"
+        Title="About" Height="300" Width="346.479">
+    <Grid>
+        <Image Source="../../Images/vgtu.png" Margin="-17,9,188,152"></Image>
+        <Label Content="(c) VGTU, 2014" HorizontalAlignment="Left" Margin="135,47,0,0" VerticalAlignment="Top" Width="180" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="131" Width="305"><Run Language="lt-lt" Block.TextAlignment="Justify" Text=""/></TextBlock>
+    </Grid>
+</Window>

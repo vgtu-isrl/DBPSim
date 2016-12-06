@@ -1,0 +1,61 @@
+﻿using DBPSim.RuleEngine.Memory;
+using DBPSim.RuleEngine.Rules;
+using DBPSim.RuleEngine.RulesExecution;
+using System;
+
+
+namespace DBPSim.RuleEngine.Template
+{
+
+    public class RuleTemplate : RuleTemplateBase
+    {
+
+        public RuleTemplate(RulesEngine rulesEngine, WorkingMemory memory, RuleCollection allRules, Rule rule)
+            : base(rulesEngine, memory, allRules, rule)
+        {
+        }
+
+
+        public bool ExecuteCondition()
+        {
+            Rule rule = this._rule;
+            try
+            {
+                return ({[CONDITION]});				
+            }
+            catch (Exception ex)
+            {				
+                this._ruleResult.ConditionException = ex;
+            }
+            return false;
+        }
+
+
+        public RuleResult ExecuteBody()
+        {
+            Rule rule = this._rule;
+            try
+            {
+                {[BODY]}
+				
+            this._ruleResult.ResultParameters.Add("activity", this)
+            }
+            catch (Exception ex)
+            {
+                this._ruleResult.BodyException = ex;
+            }
+            return this._ruleResult;
+        }
+
+
+        public override RuleResult Execute()
+        {
+            if (this.ExecuteCondition())
+            {
+                return this.ExecuteBody();
+            }
+            return this._ruleResult;
+        }
+
+    }
+}

@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[ConsumeType] (
+    [ID]    INT  IDENTITY (1, 1) NOT NULL,
+    [Title] TEXT NOT NULL,
+    CONSTRAINT [PK_CONSUMETYPE] PRIMARY KEY NONCLUSTERED ([ID] ASC)
+);
+

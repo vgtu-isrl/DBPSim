@@ -1,0 +1,57 @@
+<RuleCollection><Rule><Id>1</Id><Enabled>True</Enabled><Title>Init</Title><Priority>1</Priority><Condition>Not Fact.Exists("Started")</Condition><Body><![CDATA[Create("Resursai")
+#LaukiantysAutomobiliai = 30
+#Operatoriai = 1
+#ApsaugosDarbuotojai = 1
+#PatikrintiAtvykeAutomobiliai = 0
+#IvaziaveAutomobiliai = 0
+#PatikrintiIvaziaveAutomobiliai = 1
+#LaukiaPylimo = 0
+#PildomiAutomobiliai = 0
+#LaukiaIsvaziavimo = 0
+#LaukiaIsvaziavimoPatikrinimo = 0
+#IsvaziaveAutomobiliai = 0
+Create("Started")]]></Body></Rule><Rule><Id>2</Id><Enabled>True</Enabled><Title>UzsakymoAutorizavimas</Title><Priority>1</Priority><Condition>Fact.Exists("Started") And #ApsaugosDarbuotojai &gt; 0 And #LaukiantysAutomobiliai &gt; 0</Condition><Body><![CDATA[#ApsaugosDarbuotojai -= 1
+#LaukiantysAutomobiliai -= 1
+ACT(20, Sub()
+   #PatikrintiAtvykeAutomobiliai += 1
+   #ApsaugosDarbuotojai += 1
+End Sub
+)
+]]></Body></Rule><Rule><Id>3</Id><Enabled>True</Enabled><Title>KrovosNurodymoSpausdinimas</Title><Priority>1</Priority><Condition>Fact.Exists("Started") And #ApsaugosDarbuotojai &gt; 0 And #PatikrintiAtvykeAutomobiliai &gt; 0</Condition><Body><![CDATA[#ApsaugosDarbuotojai -= 1
+#PatikrintiAtvykeAutomobiliai -= 1
+ACT(1,Sub()
+   #IvaziaveAutomobiliai += 1
+   #ApsaugosDarbuotojai += 1
+End Sub
+)]]></Body></Rule><Rule><Id>4</Id><Enabled>True</Enabled><Title>AutoTransportoPatikra</Title><Priority>1</Priority><Condition><![CDATA[Fact.Exists("Started") And #ApsaugosDarbuotojai > 0 And #IvaziaveAutomobiliai > 0 And #IvaziaveAutomobiliai <> #PatikrintiIvaziaveAutomobiliai ]]></Condition><Body><![CDATA[#ApsaugosDarbuotojai -= 1
+ACT(2,Sub()
+   #PatikrintiIvaziaveAutomobiliai += 1
+   #ApsaugosDarbuotojai += 1
+   #LaukiaPylimo +=1
+End Sub
+)]]></Body></Rule><Rule><Id>5</Id><Enabled>True</Enabled><Title>AutoCisterosUzpylimas</Title><Priority>1</Priority><Condition>Fact.Exists("Started") And #ApsaugosDarbuotojai &gt; 0 And #LaukiaPylimo &gt; 0</Condition><Body><![CDATA[#ApsaugosDarbuotojai -= 1
+#PildomiAutomobiliai += 1
+#LaukiaPylimo -= 1
+
+ACT(1, Sub()
+   #ApsaugosDarbuotojai += 1
+End Sub)
+
+ACT(25, Sub()
+   #PildomiAutomobiliai -= 1
+   #LaukiaIsvaziavimo += 1
+End Sub)]]></Body></Rule><Rule><Id>6</Id><Enabled>True</Enabled><Title>DokumentuSpausdinimas</Title><Priority>1</Priority><Condition>Fact.Exists("Started") And #ApsaugosDarbuotojai &gt; 0 And #LaukiaIsvaziavimo &gt; 0</Condition><Body><![CDATA[#ApsaugosDarbuotojai -= 1
+#LaukiaIsvaziavimo -= 1
+
+ACT(1, Sub()
+   #LaukiaIsvaziavimoPatikrinimo += 1
+   #ApsaugosDarbuotojai += 1
+End Sub)]]></Body></Rule><Rule><Id>7</Id><Enabled>True</Enabled><Title>AutoTransportoPatikraIsvykimas</Title><Priority>1</Priority><Condition>Fact.Exists("Started") And #ApsaugosDarbuotojai &gt;0 And #LaukiaIsvaziavimoPatikrinimo &gt; 0</Condition><Body><![CDATA[#ApsaugosDarbuotojai -= 1
+#LaukiaIsvaziavimoPatikrinimo -= 1
+
+ACT(8, Sub()
+   #ApsaugosDarbuotojai += 1
+   #IsvaziaveAutomobiliai +=1
+   #PatikrintiIvaziaveAutomobiliai -= 1
+   #IvaziaveAutomobiliai -= 1
+End Sub)]]></Body></Rule></RuleCollection>

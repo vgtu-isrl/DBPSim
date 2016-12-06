@@ -1,0 +1,53 @@
+﻿<Window x:Name="Simulation" x:Class="DBPSim.SimulationGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                    
+        xmlns:tci="clr-namespace:DBPSim.SimulationGUI.Tabs"
+        Icon="Images/program.ico"
+        Title="DBPSim" WindowStartupLocation="CenterScreen" Closing="Simulation_Closing">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid Height="710" Width="1360">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="11*"/>
+                <RowDefinition Height="220*"/>
+            </Grid.RowDefinitions>
+            <Menu IsMainMenu="True" Grid.RowSpan="2">
+                <MenuItem Header="_File">
+                    <MenuItem Name="ClearContext" Header="_Clear context" Click="ClearContext_Click"/>
+                    <MenuItem Name="MenuItemExit" Header="_Exit" Click="MenuItemExit_Click"/>
+                </MenuItem>
+                <MenuItem Header="_Help">
+                    <MenuItem Name="MenuItemAbout" Header="_About" Click="MenuItemAbout_Click"/>
+                </MenuItem>
+            </Menu>
+            <TabControl Name="TabControl" Grid.Row="1">
+                <TabItem Header="Events">
+                    <Grid Background="#FFE5E5E5">
+                        <tci:TabItemEvents x:Name="TabItemEvents" HorizontalAlignment="Left"></tci:TabItemEvents>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Activities">
+                    <Grid Background="#FFE5E5E5">
+                        <tci:TabItemRules x:Name="TabItemRules" HorizontalAlignment="Left" Loaded="TabItemRules_Loaded"></tci:TabItemRules>
+                    </Grid>
+                </TabItem>
+                <!--<TabItem Header="Model">
+                <Grid Background="#FFE5E5E5">
+                    <tci:TabItemModel x:Name="TabItemModel" HorizontalAlignment="Left"></tci:TabItemModel>
+                </Grid>
+            </TabItem>-->
+
+                <TabItem Header="Simulation">
+                    <Grid Background="#FFE5E5E5">
+                        <tci:TabItemSimulation x:Name="TabItemSimulation" HorizontalAlignment="Left"></tci:TabItemSimulation>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Reporting">
+                    <Grid Background="#FFE5E5E5">
+                        <tci:TabItemReporting x:Name="TabItemReporting" HorizontalAlignment="Left"></tci:TabItemReporting>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+
+        </Grid>
+    </ScrollViewer>
+</Window>

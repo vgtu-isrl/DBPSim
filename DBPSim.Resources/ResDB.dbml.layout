@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14, 10.75" name="ResDB">
+  <DataContextMoniker Name="/ResDBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="37369ddf-5c73-4c56-9b9c-84056c13dc41" absoluteBounds="3.5, 9.125, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/ResDBDataContext/Activity" />
+      <nestedChildShapes>
+        <elementListCompartment Id="345f31d5-76e5-4fcf-9025-c3b32c3f514d" absoluteBounds="3.515, 9.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="45d27c82-5fdb-4175-8e91-f4c0fd663d18" absoluteBounds="3.5, 2.5, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/ResDBDataContext/ResourceKindAttribute" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c1e7c409-98b0-4091-bbc1-de6a1d245e05" absoluteBounds="3.515, 2.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0f560a81-809b-4df7-869b-0fef901ddf4f" absoluteBounds="0.75, 0.75, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/ResDBDataContext/Attribute" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a59a8fa2-6511-4077-952e-6010e2e9bc27" absoluteBounds="0.765, 1.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5f4d1500-b563-44e3-bbc0-c550a1aa6d6c" absoluteBounds="9, 6.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/ResDBDataContext/ConsumedResourceAttribute" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6a98c104-0e22-4ed2-9fcb-14ee956e021e" absoluteBounds="9.015, 6.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="439ff67b-c711-4230-8167-9eda779cce82" absoluteBounds="6.25, 3.25, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/ResDBDataContext/ConsumeType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3b0bd309-f660-4180-8535-9e9f127ad11c" absoluteBounds="6.265, 3.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="462b780d-750f-43ad-b898-2d7bd502f676" absoluteBounds="0.75, 9.25, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/ResDBDataContext/Process" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f7c8277c-9947-4f7e-a258-7b190171a433" absoluteBounds="0.765, 9.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4cc5bf0e-51a5-4cc3-aacd-76f758f71749" absoluteBounds="3.5, 5.875, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/ResDBDataContext/Resource" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7abe4423-d53f-43d2-be0a-f41454240579" absoluteBounds="3.515, 6.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a1980825-8760-4657-9570-0070b43a7f29" absoluteBounds="6.25, 5.875, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/ResDBDataContext/ResourceAllocation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="760070f5-696b-45ad-baea-bba7b33b1649" absoluteBounds="6.265, 6.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a9a61588-c840-4cd4-bb9b-d9fd3a4aab24" absoluteBounds="11.75, 5.875, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/ResDBDataContext/ResourceAttribute" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8d8114dc-30d2-4fb9-a3bc-3a1d6db00bb0" absoluteBounds="11.765, 6.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9f35c4bb-e134-4bdf-8220-71608d446b18" absoluteBounds="0.75, 3.625, 2, 1.3862939453125">
+      <DataClassMoniker Name="/ResDBDataContext/ResourceKind" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f0be3e67-7697-4bde-a4c1-f80a4c3a2caa" absoluteBounds="0.765, 4.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 1.34699625651042); (4.5 : 1.34699625651042); (4.5 : 2.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResDBDataContext/Attribute/Attribute_ResourceKindAttribute" />
+      <nodes>
+        <classShapeMoniker Id="0f560a81-809b-4df7-869b-0fef901ddf4f" />
+        <classShapeMoniker Id="45d27c82-5fdb-4175-8e91-f4c0fd663d18" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 3.84699625651042); (10 : 3.84699625651042); (10 : 6.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResDBDataContext/ConsumeType/ConsumeType_ConsumedResourceAttribute" />
+      <nodes>
+        <classShapeMoniker Id="439ff67b-c711-4230-8167-9eda779cce82" />
+        <classShapeMoniker Id="5f4d1500-b563-44e3-bbc0-c550a1aa6d6c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 9.84699625651042); (3.5 : 9.84699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResDBDataContext/Process/Process_Activity" />
+      <nodes>
+        <classShapeMoniker Id="462b780d-750f-43ad-b898-2d7bd502f676" />
+        <classShapeMoniker Id="37369ddf-5c73-4c56-9b9c-84056c13dc41" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 6.91429768880208); (9 : 6.91429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResDBDataContext/ResourceAllocation/ResourceAllocation_ConsumedResourceAttribute" />
+      <nodes>
+        <classShapeMoniker Id="a1980825-8760-4657-9570-0070b43a7f29" />
+        <classShapeMoniker Id="5f4d1500-b563-44e3-bbc0-c550a1aa6d6c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 6.85659912109375); (6.25 : 6.85659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResDBDataContext/Resource/Resource_ResourceAllocation" />
+      <nodes>
+        <classShapeMoniker Id="4cc5bf0e-51a5-4cc3-aacd-76f758f71749" />
+        <classShapeMoniker Id="a1980825-8760-4657-9570-0070b43a7f29" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 6.30329956054688); (6.25 : 6.30329956054688)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResDBDataContext/Resource/Resource_ResourceAllocation1" />
+      <nodes>
+        <classShapeMoniker Id="4cc5bf0e-51a5-4cc3-aacd-76f758f71749" />
+        <classShapeMoniker Id="a1980825-8760-4657-9570-0070b43a7f29" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 9.81814697265625); (7.25 : 9.81814697265625); (7.25 : 7.8381982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResDBDataContext/Activity/Activity_ResourceAllocation" />
+      <nodes>
+        <classShapeMoniker Id="37369ddf-5c73-4c56-9b9c-84056c13dc41" />
+        <classShapeMoniker Id="a1980825-8760-4657-9570-0070b43a7f29" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 7.8381982421875); (5.875 : 8.2131982421875); (7.16666666666667 : 8.2131982421875 : JumpStart); (7.33333333333333 : 8.2131982421875 : JumpEnd); (11.375 : 8.2131982421875); (11.75 : 7.8381982421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ResDBDataContext/Resource/Resource_ResourceAttribute" />
+      <nodes>
+        <classShapeMoniker Id="4cc5bf0e-51a5-4cc3-aacd-76f758f71749" />
+        <classShapeMoniker Id="a9a61588-c840-4cd4-bb9b-d9fd3a4aab24" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 1.67674688476563); (4.41666666666667 : 1.67674688476562 : JumpStart); (4.58333333333333 : 1.67674688476563 : JumpEnd); (12.75 : 1.67674688476563); (12.75 : 5.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResDBDataContext/Attribute/Attribute_ResourceAttribute" />
+      <nodes>
+        <classShapeMoniker Id="0f560a81-809b-4df7-869b-0fef901ddf4f" />
+        <classShapeMoniker Id="a9a61588-c840-4cd4-bb9b-d9fd3a4aab24" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11 : 6.91429768880208); (11.75 : 6.91429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResDBDataContext/ConsumedResourceAttribute/ConsumedResourceAttribute_ResourceAttribute" />
+      <nodes>
+        <classShapeMoniker Id="5f4d1500-b563-44e3-bbc0-c550a1aa6d6c" />
+        <classShapeMoniker Id="a9a61588-c840-4cd4-bb9b-d9fd3a4aab24" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 3.94794840494792); (3.5 : 3.94794840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResDBDataContext/ResourceKind/ResourceKind_ResourceKindAttribute" />
+      <nodes>
+        <classShapeMoniker Id="9f35c4bb-e134-4bdf-8220-71608d446b18" />
+        <classShapeMoniker Id="45d27c82-5fdb-4175-8e91-f4c0fd663d18" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 5.0112939453125); (1.75 : 6.85659912109375); (3.5 : 6.85659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ResDBDataContext/ResourceKind/ResourceKind_Resource" />
+      <nodes>
+        <classShapeMoniker Id="9f35c4bb-e134-4bdf-8220-71608d446b18" />
+        <classShapeMoniker Id="4cc5bf0e-51a5-4cc3-aacd-76f758f71749" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.44931705603966 : 3.625); (1.44931705603966 : 3.375); (2.06500117938702 : 3.375); (2.06500117938702 : 3.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ResDBDataContext/ResourceKind/ResourceKind_ResourceKind" />
+      <nodes>
+        <classShapeMoniker Id="9f35c4bb-e134-4bdf-8220-71608d446b18" />
+        <classShapeMoniker Id="9f35c4bb-e134-4bdf-8220-71608d446b18" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

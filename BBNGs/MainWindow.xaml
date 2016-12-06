@@ -1,0 +1,60 @@
+﻿<Window x:Class="BBNGs.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="671" Width="1262.315" Closing="Window_Closing" Loaded="Window_Loaded">
+    <Grid Margin="0,0,29,32.333">
+        <TextBox x:Name="OutputStreamBox" HorizontalAlignment="Left" Height="590" Margin="11,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="396" RenderTransformOrigin="0.5,0.5" VerticalScrollBarVisibility="Visible"/>
+        <TabControl HorizontalAlignment="Left" Height="313" Margin="412,9,0,0" VerticalAlignment="Top" Width="689">
+            <TabItem x:Name="LogTab" Header="Log" Margin="0,0,-4,-3">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="86*"/>
+                        <ColumnDefinition Width="597*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="SaveLogBtn" Content="Save Log" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.505,-0.181" Click="SaveLogBtn_Click" Grid.Column="1" IsEnabled="False"/>
+                    <TextBox x:Name="LogFileTbx" HorizontalAlignment="Left" Height="25" Margin="10,201,0,0" TextWrapping="Wrap" Text="LogFile" VerticalAlignment="Top" Width="641" RenderTransformOrigin="0.028,-0.486" Grid.ColumnSpan="2"/>
+                    <Button x:Name="ExtractLogBtn" Content="Extract Log" HorizontalAlignment="Left" Margin="11,9,0,0" VerticalAlignment="Top" Width="75" Click="ExtractBtn_Click" Height="20"/>
+                    <Button x:Name="ExtractTreeBtn" Content="Extract Tree" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="ExtractTreeBtn_Click"/>
+                    <Button x:Name="OutputGraphBtn" Content="Output Graph" HorizontalAlignment="Left" Margin="392,82,0,0" VerticalAlignment="Top" Width="90" RenderTransformOrigin="0.08,0.35" Click="OutputGraphBtn_Click" IsEnabled="False" Grid.Column="1"/>
+                    <Button x:Name="ShowLoopsBtn" Content="Show Loops" HorizontalAlignment="Left" Margin="440,4,0,0" VerticalAlignment="Top" Width="78" Click="ShowLoopsBtn_Click" Grid.Column="1"/>
+                    <Button x:Name="ExtractPathsBtn" Content="Extract Paths" HorizontalAlignment="Left" Margin="440,106,0,0" VerticalAlignment="Top" Width="78" Click="Button_Click_1" Grid.Column="1"/>
+                    <Button x:Name="ExtractLoopsBtn" Content="Extract Loops" HorizontalAlignment="Left" Margin="440,31,0,0" VerticalAlignment="Top" Width="78" Click="ExtractLoopsBtn_Click" Grid.Column="1"/>
+                    <Button x:Name="ShowDependenciesBtn" Content="Show dependencies" HorizontalAlignment="Left" Margin="206,29,0,0" VerticalAlignment="Top" Width="190" Click="ShowDependencies" Grid.Column="1"/>
+                    <Button x:Name="replayTracesBtn" Content="Replay Traces" Grid.Column="1" HorizontalAlignment="Left" Margin="104,53,0,0" VerticalAlignment="Top" Width="75" Click="replayTracesBtn_Click"/>
+                    <Button x:Name="GenerateProbsBTn" Content="Generate probabilities" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="126" Click="GenerateProbsBTn_Click" Grid.ColumnSpan="2"/>
+                    <Button x:Name="ShowCPTBtn" Content="Show CPT" Grid.Column="1" HorizontalAlignment="Left" Margin="440,55,0,0" VerticalAlignment="Top" Width="78" Click="ShowCPTBtn_Click"/>
+                    <Button x:Name="ObserveBtn" Content="Observe" Grid.Column="1" HorizontalAlignment="Left" Margin="206,3,0,0" VerticalAlignment="Top" Width="78" Click="ObserveBtn_Click"/>
+                    <Button x:Name="ClearObservationBtn" Content="Clear obsrv" Grid.Column="1" HorizontalAlignment="Left" Margin="289,2,0,0" VerticalAlignment="Top" Width="94" Click="ClearObservationBtn_Click"/>
+                    <Button x:Name="ProbChanceBtn" Content="Probability" Grid.Column="1" HorizontalAlignment="Left" Margin="104,2,0,0" VerticalAlignment="Top" Width="75" Click="ProbChanceBtn_Click"/>
+                    <Button x:Name="ReplayProbBtn" Content="Replay Prob" Grid.Column="1" HorizontalAlignment="Left" Margin="104,77,0,0" VerticalAlignment="Top" Width="75" Click="ReplayProbBtn_Click"/>
+                    <Button x:Name="PredictBtn" Content="Predict" Grid.Column="1" HorizontalAlignment="Left" Margin="104,27,0,0" VerticalAlignment="Top" Width="75" Click="PredictBtn_Click"/>
+                    <Button Content="Show Graph" Grid.Column="1" HorizontalAlignment="Left" Margin="487,82,0,0" VerticalAlignment="Top" Width="78" Click="Button_Click_6"/>
+                    <Button x:Name="button" Content="GenerateData" Grid.Column="1" HorizontalAlignment="Left" Margin="104,106,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <ListView x:Name="BayesianNodesList" HorizontalAlignment="Left" Height="253" Margin="412,327,0,0" VerticalAlignment="Top" Width="249" SelectionChanged="BayesianNodesList_SelectionChanged" KeyDown="BayesianNodesList_KeyDown">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListBox x:Name="AttributesList" HorizontalAlignment="Left" Height="253" Margin="859,328,0,0" VerticalAlignment="Top" Width="172" SelectionChanged="AttributesList_SelectionChanged"/>
+        <ListBox x:Name="ValueList" HorizontalAlignment="Left" Height="253" Margin="1036,328,0,0" VerticalAlignment="Top" Width="175" SelectionChanged="ValueList_SelectionChanged"/>
+        <ListBox x:Name="parentBox" HorizontalAlignment="Left" Height="252" Margin="666,328,0,0" VerticalAlignment="Top" Width="188"/>
+        <Label x:Name="SelectedAttrLbl" Content="_" HorizontalAlignment="Left" Height="24" Margin="895,609,0,-24" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="96">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.669"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+
+
+
+    </Grid>
+</Window>

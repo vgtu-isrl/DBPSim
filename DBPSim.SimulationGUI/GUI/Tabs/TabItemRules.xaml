@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="DBPSim.SimulationGUI.Tabs.TabItemRules"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+    <Grid Height="1000" Width="1300">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="980"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="971*"/>
+        </Grid.RowDefinitions>
+        <Grid HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="1" Width="400">
+            <DataGrid Name="DataGridRules" IsReadOnly="True" AutoGenerateColumns="False" Margin="10,0,-210,374" ItemsSource="{Binding Rules, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="DataGridRules_SelectionChanged" SelectedItem="0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=Id}" Header="Id" Width="70" IsReadOnly="True" CanUserSort="False" CanUserResize="False" CanUserReorder="False" />
+                    <DataGridTextColumn Binding="{Binding Path=Title}" Header="Title" Width="250" IsReadOnly="True" CanUserSort="False" CanUserResize="False" CanUserReorder="False" />
+                    <DataGridTemplateColumn MinWidth="50" Header="Enabled">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Name="RuleEnabled" IsChecked="{Binding Enabled, Mode=TwoWay}" HorizontalAlignment="Center" VerticalContentAlignment="Center" Visibility="Hidden"></CheckBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn MinWidth="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="ButtonEditRule" Click="ButtonEditRule_Click">Edit</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn MinWidth="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="ButtonDeleteRule" Click="ButtonDeleteRule_Click">Delete</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Button Name="ButtonLoadRulesFromFile" Content="Load from file..." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="128" Click="ButtonLoadRulesFromFile_Click"/>
+        <Button Name="ButtonSaveRulesInFile" Content="Save to file..." HorizontalAlignment="Left" Margin="158,10,0,0" VerticalAlignment="Top" Width="142" Click="ButtonSaveRulesInFile_Click" />
+        <Button Name="ButtonSaveRules" Content="Save" HorizontalAlignment="Left" Margin="158,10,0,0" VerticalAlignment="Top" Width="142" Click="ButtonSaveRules_Click" />
+        <Button Name="ButtonAddRule" Content="Add" HorizontalAlignment="Left" Margin="321,10,0,0" VerticalAlignment="Top" Width="90" Click="ButtonAddRule_Click"/>
+        <Grid Name="GridRuleExecutionLog" Margin="626,0,-309,362" Grid.Row="1">
+            <DockPanel Grid.Row="0">
+                <ListView  Background="#FBFBFE" HorizontalAlignment="Stretch" Name="ListViewRuleExeutionMembers" ItemsSource="{Binding ExecutionResults, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10.04">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Style.Setters>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                            <Border BorderBrush="#3D3D3D" Margin="0,2,0,0" BorderThickness="1,1,1,1">
+                                                <Border.Background>
+                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                        <GradientStop Color="#FFFFFF" Offset="0.0" />
+                                                        <GradientStop Color="#FBFCFE" Offset="1.0" />
+                                                    </LinearGradientBrush>
+                                                </Border.Background>
+                                                <StackPanel HorizontalAlignment="Stretch">
+                                                    <StackPanel Orientation="Horizontal" >
+                                                        <TextBlock Margin="2,0,0,0" FontWeight="Bold" Foreground="DarkGreen" Text="Date: "></TextBlock>
+                                                        <TextBlock Margin="5,0,0,0" FontWeight="Bold" Foreground="Gray" Text="{Binding ExecutionDate}"></TextBlock>
+                                                        <Button Name="ButtonShowConditionException" Foreground="Red" Margin="10,0,0,0" Visibility="{Binding Path=Result.ConditionException, TargetNullValue=Collapsed}" Click="ButtonShowConditionException_Click">Condition exception</Button>
+                                                        <Button Name="ButtonShowBodyException" Foreground="Red" Margin="10,0,0,0" Visibility="{Binding Path=Result.BodyException, TargetNullValue=Collapsed}" Click="ButtonShowBodyException_Click">Body exception</Button>
+                                                    </StackPanel>
+                                                    <ItemsControl HorizontalAlignment="Stretch" Margin="30,0,0,0" ItemsSource="{Binding Result.ResultParameters}">
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <TextBlock FontWeight="Bold" Text="{Binding Key}"></TextBlock>
+                                                                    <TextBlock Text=" = "></TextBlock>
+                                                                    <TextBlock Text="{Binding Value}"></TextBlock>
+                                                                </StackPanel>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                </StackPanel>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style.Setters>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </DockPanel>
+        </Grid>
+        <Label Content="Execution log" HorizontalAlignment="Left" Margin="626,10,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="DBPSim.RuleEngine.RulesEngine">
+    <Position X="0.5" Y="0.5" Width="3.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EgUAAAAgACAAAhAAAEACAAAAAgAAAABQEAABAAAAAAA=</HashCode>
+      <FileName>RulesEngine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.RuleEngineEvents">
+    <Position X="4.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAQABAgAAAAAAAIAEAAAAQAAAACABAAAAAAAAAAAI=</HashCode>
+      <FileName>RuleEngineEvents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.RuleCollection">
+    <Position X="7" Y="0.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RuleCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.RuleBase">
+    <Position X="7" Y="2.25" Width="4.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQACAIAAEICCAMAEBBBRAAAAAAgAAIEUAAAAAEAAEAA=</HashCode>
+      <FileName>RuleBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

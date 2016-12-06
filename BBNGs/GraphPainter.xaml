@@ -1,0 +1,10 @@
+﻿<Window x:Class="BBNGs.GraphPainter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="GraphPainter" Height="300" Width="300" ResizeMode="CanResizeWithGrip" WindowState="Maximized" ScrollViewer.HorizontalScrollBarVisibility="Visible"  ScrollViewer.VerticalScrollBarVisibility="Visible"  ScrollViewer.CanContentScroll="True">
+    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible">
+        <Canvas Background="White" Name="PaintCanvas" ScrollViewer.HorizontalScrollBarVisibility="Visible"  ScrollViewer.VerticalScrollBarVisibility="Visible"  ScrollViewer.CanContentScroll="True" MouseLeftButtonUp="PaintCanvas_MouseLeftButtonUp">
+         
+        </Canvas>
+    </ScrollViewer>
+</Window>

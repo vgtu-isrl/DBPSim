@@ -1,0 +1,17 @@
+<RuleCollection>
+	<Rule>
+		<Id>1</Id>
+		<Enabled>True</Enabled>
+		<Title>init_Pradėti</Title>
+		<Priority>1</Priority>
+		<Condition> Me._rulesEngine.ExecutedSteps &lt;2 </Condition>
+		<Body>
+			<![CDATA[
+			Create("started",10)
+BBNG_TRYLOADMODEL("C:\temp\TV\Neutron-Simulation-Tool\SimulationTool-Source\BBNGs\bin\Debug\1_edit_old1.xes")
+BBNG_RESETOBSERVATIONS()
+BBNG_OBSERVEVALUE("start_event","occured","1")
+]]>
+		</Body>
+	</Rule>
+</RuleCollection>

@@ -1,0 +1,63 @@
+﻿Imports System
+Imports System.Random
+Imports DBPSim.RuleEngine
+Imports DBPSim.RuleEngine.Memory
+Imports DBPSim.RuleEngine.Execution
+Imports DBPSim.RuleEngine.Template
+
+Public Class RuleTemplate : Inherits RuleTemplateBase
+
+    Public Sub New(ByVal ruleEngine As RulesEngine, ByVal memory As WorkingMemory, ByVal rule as RuleBase)
+        MyBase.New(ruleEngine, memory, rule)
+    End Sub
+
+    Public Function ExecuteCondition() As Boolean
+        Try			
+            Return ({[CONDITION]})		
+        Catch ex As Exception			
+            Me._ruleResult.ConditionException = ex			
+			
+			RuleEngineEvents.ExecuteEvent(RuleEngineEvents.OnConditionException, Me, RuleEventArgs.Load(True, ex.Message, ex))
+
+        End Try
+        Return False
+    End Function
+
+
+    Public Function ExecuteBody() As RuleExecutionResult
+        Try
+            {[BODY]}
+			
+            Me._ruleResult.ResultParameters.Add("activity", Me)
+	    Catch ex As ForceExecutionStopException
+			throw				
+		Catch ex As EndExecutionException
+			throw			
+        Catch ex As exception
+            Me._ruleResult.BodyException = ex
+
+			RuleEngineEvents.ExecuteEvent(RuleEngineEvents.OnBodyException, Me, RuleEventArgs.Load(True, ex.Message, ex))
+
+        End Try
+		If Me._eventFiringEnabled Then
+			If (Not Me._rule.RulesEngine is Nothing) Then
+				'Me._rule.RulesEngine.FireAllRules()
+			End If
+		End If
+        Return Me._ruleResult
+    End Function
+    
+     Public Overrides Function Execute() As RuleExecutionResult
+					
+		RuleEngineEvents.ExecuteEvent(RuleEngineEvents.OnExecutionStarted, Me, RuleEventArgs.Load(False, "Rule " & Me._rule.Id & " execution started", Nothing))
+
+        'If Me.ExecuteCondition() Then
+            Me.ExecuteBody()
+        'End If
+
+		RuleEngineEvents.ExecuteEvent(RuleEngineEvents.OnExecutionEnded, Me, RuleEventArgs.Load(False, "Rule " & Me._rule.Id & " execution ended", Nothing))
+
+        Return Me._ruleResult
+    End Function
+
+End Class

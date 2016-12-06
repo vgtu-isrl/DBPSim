@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="DBPSim.RuleEngine.DataSource.DatabaseDataSourceProvider" Collapsed="true">
+    <Position X="2.75" Y="2.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAgIAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Datasource\DatabaseDataSourceProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DBPSim.RuleEngine.DataSource.DataSourceProvider">
+    <Position X="3.75" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Datasource\DataSourceProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.DataSource.XmlDataSourceProvider" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAgIAAAAAAAAAAAAQAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Datasource\XmlDataSourceProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.RuleCollection">
+    <Position X="8" Y="0.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RuleCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.RuleBase">
+    <Position X="8" Y="2" Width="4.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQACAIAAEICCAMAEBBBRAAAAAAgAAIEUAAAAAEAAEAA=</HashCode>
+      <FileName>RuleBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

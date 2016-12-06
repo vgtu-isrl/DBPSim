@@ -1,0 +1,11 @@
+﻿<Window x:Class="DBPSim.SimulationGUI.Windows.FullRule"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Icon="../../Images/program.ico"
+        Title="Full rule" Height="700" Width="500" ScrollViewer.VerticalScrollBarVisibility="Auto">
+    <Grid>
+        <ScrollViewer Margin="10,0,0,0">
+            <TextBlock Name="TextBlockTranslatedRule" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+        </ScrollViewer>
+    </Grid>
+</Window>

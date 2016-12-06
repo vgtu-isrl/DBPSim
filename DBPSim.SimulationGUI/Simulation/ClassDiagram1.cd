@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="DBPSim.Simulation.ProcessModel.ProcessAction" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="1.75" Width="3.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AEAEAAAAEAAAAAQArCAAECAAIAAAEIwAABABiIAAAAA=</HashCode>
+      <FileName>Simulation\ProcessModel\ProcessAction.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DBPSim.Simulation.ProcessModel.ProcessActionCollection" Collapsed="true">
+    <Position X="3.75" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Simulation\ProcessModel\ProcessActionCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.Simulation.ProcessModel.WatchPointInstance">
+    <Position X="7.25" Y="1.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Simulation\ProcessModel\WatchPointInstance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.Simulation.ProcessModel.ProcessModelInstance">
+    <Position X="0.5" Y="1.75" Width="3" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAgACAEAEQAAAAAEgAAAoQAAAAAAABABAg=</HashCode>
+      <FileName>Simulation\ProcessModel\ProcessModelInstance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.Simulation.ProcessModel.ProcessModelInstanceCollection" Collapsed="true">
+    <Position X="0.5" Y="0.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Simulation\ProcessModel\ProcessModelInstanceCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.Simulation.Simulator.SimulatorHelper">
+    <Position X="5.25" Y="6.5" Width="4" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="DBPSim.Simulation.Simulator.SimulatorHelper.SimulationRuntime" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Simulation\Simulator\SimulatorHelper.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQEACgCECAwCAAAAAAAAAgAAABAAAAAAAAEAAAAAAg=</HashCode>
+      <FileName>Simulation\Simulator\SimulatorHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.Simulation.Context">
+    <Position X="0.5" Y="6.5" Width="4.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EoAQAESAACAAAAAEAAAAAAAAAgAAACAAAgADAAAAAQI=</HashCode>
+      <FileName>Simulation\Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="DBPSim.Simulation.Simulator.SimulatorStatus">
+    <Position X="0.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAQAAAAQAAAAAAAAAAAAAABAAQAAAABA=</HashCode>
+      <FileName>Simulation\Simulator\SimulatorStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

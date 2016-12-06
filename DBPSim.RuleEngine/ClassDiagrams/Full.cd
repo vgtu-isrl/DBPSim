@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DBPSim.RuleEngine.Collision.CollisionHightestPriority" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collision\CollisionHightestPriority.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Collision.CollisionSolverBase" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collision\CollisionSolverBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Collision.DateCollisionSolver" Collapsed="true">
+    <Position X="3" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collision\CollisionSolverDateTime.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Collision.CollisionSolverPriority" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collision\CollisionSolverPriority.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Collision.CollisionSolverRandom" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collision\CollisionSolverRandom.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.XmlSaver" Collapsed="true">
+    <Position X="13.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAQQBAAAQAgAEBgACAAEAAAAAAQMQEAAAIABASAAAA=</HashCode>
+      <FileName>Common\XmlSaver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.EndExecutionException" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EndExecutionException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.ExpandoObjectExtension" Collapsed="true">
+    <Position X="15.5" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>ExpandoObjectExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.ForceExecutionStopException" Collapsed="true">
+    <Position X="18.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ForceExecutionStopException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.RandomExtension" Collapsed="true">
+    <Position X="12" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RandomExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.RuleBase" Collapsed="true">
+    <Position X="6.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQACAIAAEICCAMAEBBBRAAAAAAgAAIEUAAAAAEAAEAA=</HashCode>
+      <FileName>RuleBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.RuleCollection" Collapsed="true">
+    <Position X="17.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RuleCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.RuleConditional" Collapsed="true">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RuleConditional.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.RuleEngineEvents" Collapsed="true">
+    <Position X="10.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQABAgAAAAAAAIAEAAAAQAAAACABAAAAAAAAAAAI=</HashCode>
+      <FileName>RuleEngineEvents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.RuleEventArgs" Collapsed="true">
+    <Position X="12" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAIAAAAAAAAAAABAAAAAABAIABAAAA=</HashCode>
+      <FileName>RuleEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.RuleNonConditional" Collapsed="true">
+    <Position X="5.5" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>RuleNonConditional.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.RulesEngine" Collapsed="true">
+    <Position X="12" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgUAAAAgACAAAhAAAEACAAAAAgAAAABQEAABAAAAAAA=</HashCode>
+      <FileName>RulesEngine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.RulesHelper" Collapsed="true">
+    <Position X="13.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAEAACAAAAAAABAAAAAAAAAAAAAAABABIA=</HashCode>
+      <FileName>RulesHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Execution.ExecutionResult" Collapsed="true">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAiCAAAAAAAAQAAAAAAAAQAAAAAAgAEAACAAAAAgAA=</HashCode>
+      <FileName>Execution\ExecutionResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Execution.ExecutionResultCollection" Collapsed="true">
+    <Position X="13.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Execution\ExecutionResultCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Execution.RuleExecutionResult" Collapsed="true">
+    <Position X="15.5" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAABAAAAAAAAAACIAACAAAAAAAAAEBAAAECAA=</HashCode>
+      <FileName>Execution\RuleExecutionResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Execution.RuleExecutor" Collapsed="true">
+    <Position X="15.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAgAAAQBAAAAAAAIAAACCAAAAAABAAAAAAA=</HashCode>
+      <FileName>Execution\RuleExecutor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.DataSource.DatabaseDataSourceProvider" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgIAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Datasource\DatabaseDataSourceProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DBPSim.RuleEngine.DataSource.DataSourceProvider" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Datasource\DataSourceProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.DataSource.XmlDataSourceProvider" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAgIAAAAAAAAAAAAQAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Datasource\XmlDataSourceProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Memory.MemoryEntryPoint" Collapsed="true">
+    <Position X="9.75" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Memory\MemoryEntryPoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Memory.WatchPoints" Collapsed="true">
+    <Position X="10.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAQAACAAAAAAA=</HashCode>
+      <FileName>Memory\WatchPoints.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Memory.WorkingMemory" Collapsed="true">
+    <Position X="13.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAEAAIAAABAAAAAAAAAAAAAABAAAAAAAAEAEAAII=</HashCode>
+      <FileName>Memory\WorkingMemory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Template.RuleTemplate" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAABAAAAAIA=</HashCode>
+      <FileName>Template\RuleTemplate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Template.RuleTemplateBase" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAEAAAAAAGCCAQQAAABAAAAgQgUAAAAAAgABAAAAQAA=</HashCode>
+      <FileName>Template\RuleTemplateBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Translator.RuleEventFiringTranslator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Translator\RuleEventFiringTranslator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Validation.Validator" Collapsed="true">
+    <Position X="17.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Validation\Validator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Translator.FactExistsTranslator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Translator\FactExistsTranslator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Translator.RuleVariablesTranslator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Translator\RuleVariablesTranslator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Translator.RuleBodyTranslator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Translator\RuleBodyTranslator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Translator.RuleMemoryVariablesTranslator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9" Y="3.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Translator\RuleMemoryVariablesTranslator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Translator.RuleConditionTranslator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Translator\RuleConditionTranslator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Translator.WatchPointTranslator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Translator\WatchPointTranslator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Translator.RuleForceStopTranslator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.75" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Translator\RuleForceStopTranslator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Translator.RuleEndTranslator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Translator\RuleEndTranslator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DBPSim.RuleEngine.Translator.RuleTranslator" Collapsed="true">
+    <Position X="15.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAQAAAAAAAAAAAAAAAAAAAAAAAAAAQAAEAAAAAAA=</HashCode>
+      <FileName>Translator\RuleTranslator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DBPSim.RuleEngine.Translator.IRuleTranslator" Collapsed="true">
+    <Position X="10.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Translator\IRuleTranslator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DBPSim.RuleEngine.Execution.ExecutionType" Collapsed="true">
+    <Position X="10.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAECAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Execution\ExecutionType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DBPSim.RuleEngine.Execution.RuleEventType" Collapsed="true">
+    <Position X="12" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABQAAAAAAAAAAAAEAAAAQAAAAAAAABAAAAAAQAAAA=</HashCode>
+      <FileName>Execution\RuleEventType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

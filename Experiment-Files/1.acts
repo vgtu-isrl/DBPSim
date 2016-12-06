@@ -1,0 +1,52 @@
+<RuleCollection><Rule><Id>1</Id><Enabled>True</Enabled><Title>Init</Title><Priority>1</Priority><Condition>Not Fact.Exists("Started")</Condition><Body><![CDATA[Create("Resursai")
+#LaukiantysAutomobiliai = 30
+#Operatoriai = 1
+#ApsaugosDarbuotojai = 2
+#PatikrintiAtvykeAutomobiliai = 0
+#IvaziaveAutomobiliai = 0
+#PatikrintiIvaziaveAutomobiliai = 0
+#LaukiaPylimo = 0
+#PildomiAutomobiliai = 0
+#LaukiaIsvaziavimo = 0
+#LaukiaIsvaziavimoPatikrinimo = 0
+#IsvaziaveAutomobiliai = 0
+Create("Started")]]></Body></Rule><Rule><Id>2</Id><Enabled>True</Enabled><Title>UzsakymoAutorizavimas</Title><Priority>1</Priority><Condition><![CDATA[Fact.Exists("Started") AndAlso ( #IvaziaveAutomobiliai + #PatikrintiAtvykeAutomobiliai < 5 ) AndAlso #LaukiantysAutomobiliai > 0 AndAlso RESERVE( #Operatoriai )]]></Condition><Body><![CDATA[#LaukiantysAutomobiliai -= 1
+ACT(new System.Random().Next(1,5), Sub()
+   #PatikrintiAtvykeAutomobiliai += 1
+   #Operatoriai += 1
+End Sub
+)
+]]></Body></Rule><Rule><Id>3</Id><Enabled>True</Enabled><Title>KrovosNurodymoSpausdinimas</Title><Priority>1</Priority><Condition><![CDATA[Fact.Exists("Started") AndAlso #IvaziaveAutomobiliai < 5 AndAlso CANRESERVE( #PatikrintiAtvykeAutomobiliai , #Operatoriai) AndAlso RESERVE( #PatikrintiAtvykeAutomobiliai ) AndAlso RESERVE( #Operatoriai )]]></Condition><Body><![CDATA[ACT(new System.Random().Next(3,5),Sub()
+   #IvaziaveAutomobiliai += 1
+   #Operatoriai += 1
+End Sub
+)]]></Body></Rule><Rule><Id>4</Id><Enabled>True</Enabled><Title>AutoTransportoPatikra</Title><Priority>4</Priority><Condition><![CDATA[Fact.Exists("Started")  AndAlso #PatikrintiIvaziaveAutomobiliai < #IvaziaveAutomobiliai AndAlso #IvaziaveAutomobiliai <5 AndAlso CANRESERVE(#PatikrintiAtvykeAutomobiliai , #ApsaugosDarbuotojai) AndAlso RESERVE( #PatikrintiAtvykeAutomobiliai ) AndAlso RESERVE( #ApsaugosDarbuotojai ) ]]></Condition><Body><![CDATA[
+ACT(new System.Random().Next(5,20),Sub()
+   #PatikrintiIvaziaveAutomobiliai += 1
+   #ApsaugosDarbuotojai += 1
+   #LaukiaPylimo +=1
+End Sub
+)]]></Body></Rule><Rule><Id>5</Id><Enabled>True</Enabled><Title>AutoCisterosUzpylimas</Title><Priority>1</Priority><Condition><![CDATA[Fact.Exists("Started") AndAlso #PildomiAutomobiliai <4 AndAlso CANRESERVE( #LaukiaPylimo , #ApsaugosDarbuotojai ) AndAlso RESERVE( #LaukiaPylimo ) AndAlso RESERVE( #ApsaugosDarbuotojai ) ]]></Condition><Body><![CDATA[#PatikrintiIvaziaveAutomobiliai -=1
+#PildomiAutomobiliai += 1
+System.Diagnostics.Debug.WriteLine( #PildomiAutomobiliai )
+
+Dim first = new System.Random().Next(5,20)
+Dim second= first +new System.Random().Next(10,30)
+ACT(first, Sub()
+   #ApsaugosDarbuotojai += 1
+End Sub)
+
+ACT(second, Sub()
+If #PildomiAutomobiliai = 0 Then 
+throw New ArgumentException("fail")
+End If
+   #PildomiAutomobiliai -= 1
+   #LaukiaIsvaziavimo += 1
+End Sub)]]></Body></Rule><Rule><Id>6</Id><Enabled>True</Enabled><Title>DokumentuSpausdinimas</Title><Priority>3</Priority><Condition><![CDATA[Fact.Exists("Started") AndAlso #PildomiAutomobiliai < 4 AndAlso CANRESERVE( #LaukiaIsvaziavimo , #ApsaugosDarbuotojai) AndAlso RESERVE( #LaukiaIsvaziavimo )   AndAlso RESERVE( #ApsaugosDarbuotojai ) ]]></Condition><Body><![CDATA[ACT(new System.Random().Next(3,15), Sub()
+   #LaukiaIsvaziavimoPatikrinimo += 1
+   #ApsaugosDarbuotojai += 1
+End Sub)]]></Body></Rule><Rule><Id>7</Id><Enabled>True</Enabled><Title>AutoTransportoPatikraIsvykimas</Title><Priority>3</Priority><Condition>Fact.Exists("Started") AndAlso #IvaziaveAutomobiliai &gt;=4 AndAlso CANRESERVE( #LaukiaIsvaziavimoPatikrinimo , #ApsaugosDarbuotojai ) AndAlso RESERVE( #LaukiaIsvaziavimoPatikrinimo ) AndAlso RESERVE( #ApsaugosDarbuotojai ) </Condition><Body><![CDATA[ACT(new System.Random().Next(5,25), Sub()
+   #ApsaugosDarbuotojai += 1
+   #IsvaziaveAutomobiliai +=1
+   #IvaziaveAutomobiliai -= 1
+End Sub)]]></Body></Rule></RuleCollection>

@@ -1,0 +1,16 @@
+<RuleCollection><Rule><Id>1</Id><Enabled>True</Enabled><Title>viena</Title><Priority>1</Priority><Condition>Not Fact.Exists("started")</Condition><Body><![CDATA[Dim s = New Action(Sub() CREATE("started"))
+
+ACT(10,s)
+
+]]></Body></Rule><Rule><Id>2</Id><Enabled>True</Enabled><Title>par1</Title><Priority>1</Priority><Condition>Fact.Exists("started") And Not Fact.Exists("expar1")</Condition><Body><![CDATA[Dim s = New Action(Sub() Create("expar1"))
+Dim s2 = New Action(Sub() Create("expar12"))
+
+ACT(25,s)
+ACT(25,s2)]]></Body></Rule><Rule><Id>3</Id><Enabled>True</Enabled><Title>Par2</Title><Priority>1</Priority><Condition>Fact.Exists("started") And Not Fact.Exists("expar2")</Condition><Body>Create("expar2")</Body></Rule><Rule><Id>4</Id><Enabled>True</Enabled><Title>seq1</Title><Priority>2</Priority><Condition>Fact.Exists("expar1") And Fact.Exists("expar2")</Condition><Body><![CDATA[Create("exseq")
+
+Dim s = New Action(Sub() Create("exseq1"))
+Dim s2 = New Action(Sub() Create("exseq2"))
+
+ACT(25,s)
+ACT(25,s2)]]></Body></Rule><Rule><Id>5</Id><Enabled>True</Enabled><Title>clear</Title><Priority>1</Priority><Condition>Fact.Exists("exseq") And Fact.Exists("started")</Condition><Body><![CDATA[Dim s = New Action( Sub() CLEARMEMORY())
+ACT(5,s)]]></Body></Rule></RuleCollection>

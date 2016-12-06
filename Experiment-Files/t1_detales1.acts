@@ -1,0 +1,54 @@
+<RuleCollection><Rule><Id>1</Id><Enabled>True</Enabled><Title>Init</Title><Priority>1</Priority><Condition>Not Fact.Exists("Started")</Condition><Body><![CDATA[Create("Resursai")
+#Paruosejas = 1
+#Frezuotojas = 1
+#DetalesP1 = 10
+#DetalesP2 = 10
+#ParuostosP1 = 0
+#ParuostosP2 = 0
+#PagamintosP1 = 0
+#PagamintosP2 = 0
+Create("Started")
+
+INSERT(
+ "ParuosimasP1",
+ new ProbabilityDistribution("100:90/90",
+  Function(x as Double)
+   Return x 
+  End Function
+ ))
+
+ INSERT(
+ "ParuosimasP2",
+ new ProbabilityDistribution("100:40/60",
+  Function(x as Double)
+   Return x 
+  End Function
+ ))
+
+ INSERT(
+ "FrezavimasP1",
+ new ProbabilityDistribution("100:10/15",
+  Function(x as Double)
+   Return x 
+  End Function
+ ))
+
+ INSERT(
+ "FrezavimasP2",
+ new ProbabilityDistribution("100:90/120",
+  Function(x as Double)
+   Return x 
+  End Function
+ ))]]></Body></Rule><Rule><Id>2</Id><Enabled>True</Enabled><Title>ParuosimasP1</Title><Priority>1</Priority><Condition><![CDATA[Fact.Exists("Started") AndAlso #DetalesP1> 0 AndAlso (#ParuostosP1)<3 AndAlso RESERVE( #Paruosejas )]]></Condition><Body><![CDATA[#DetalesP1 -= 1
+ACT( $ParuosimasP1.NextDouble(), Sub()
+   #Paruosejas += 1
+   #ParuostosP1 += 1
+End Sub
+)
+]]></Body></Rule><Rule><Id>4</Id><Enabled>True</Enabled><Title>FrezavimasP1</Title><Priority>1</Priority><Condition>Fact.Exists("Started")  AndAlso #ParuostosP1&gt; 0 AndAlso RESERVE( #Frezuotojas) </Condition><Body><![CDATA[#ParuostosP1 -= 1
+ACT($FrezavimasP1.NextDouble(),Sub()
+
+   #Frezuotojas += 1
+   #PagamintosP1  += 1
+End Sub
+)]]></Body></Rule></RuleCollection>

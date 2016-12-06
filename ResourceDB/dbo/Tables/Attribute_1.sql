@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Attribute] (
+    [ID]    INT  IDENTITY (1, 1) NOT NULL,
+    [Title] TEXT NOT NULL,
+    CONSTRAINT [PK_ATTRIBUTE] PRIMARY KEY NONCLUSTERED ([ID] ASC)
+);
+

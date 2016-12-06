@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Resources" Class="ResDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="ConnectionString" ConnectionString="Data Source=WIN-11CHAUOTV7M\SQLEXPRESS;Initial Catalog=Resources;Integrated Security=True" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Activity" Member="Activities">
+    <Type Name="Activity">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Process_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Activity_ResourceAllocation" Member="ResourceAllocations" ThisKey="ID" OtherKey="Activity_ID" Type="ResourceAllocation" />
+      <Association Name="Process_Activity" Member="Process" ThisKey="Process_ID" OtherKey="ID" Type="Process" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ResourceKindAttribute" Member="ResourceKindAttributes">
+    <Type Name="ResourceKindAttribute">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Attribute_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ResourceKind_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Value" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="dimension" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Attribute_ResourceKindAttribute" Member="Attribute" ThisKey="Attribute_ID" OtherKey="ID" Type="Attribute" IsForeignKey="true" />
+      <Association Name="ResourceKind_ResourceKindAttribute" Member="ResourceKind" ThisKey="ResourceKind_ID" OtherKey="ID" Type="ResourceKind" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Attribute" Member="Attributes">
+    <Type Name="Attribute">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Attribute_ResourceKindAttribute" Member="ResourceKindAttributes" ThisKey="ID" OtherKey="Attribute_ID" Type="ResourceKindAttribute" />
+      <Association Name="Attribute_ResourceAttribute" Member="ResourceAttributes" ThisKey="ID" OtherKey="Attribute_ID" Type="ResourceAttribute" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ConsumedResourceAttribute" Member="ConsumedResourceAttributes">
+    <Type Name="ConsumedResourceAttribute">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ConsumeType_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ResourceAllocation_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ConsumedResourceAttribute_ResourceAttribute" Member="ResourceAttributes" ThisKey="ID" OtherKey="ConsumedResourceAttribute_ID" Type="ResourceAttribute" />
+      <Association Name="ConsumeType_ConsumedResourceAttribute" Member="ConsumeType" ThisKey="ConsumeType_ID" OtherKey="ID" Type="ConsumeType" IsForeignKey="true" />
+      <Association Name="ResourceAllocation_ConsumedResourceAttribute" Member="ResourceAllocation" ThisKey="ResourceAllocation_ID" OtherKey="ID" Type="ResourceAllocation" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ConsumeType" Member="ConsumeTypes">
+    <Type Name="ConsumeType">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="ConsumeType_ConsumedResourceAttribute" Member="ConsumedResourceAttributes" ThisKey="ID" OtherKey="ConsumeType_ID" Type="ConsumedResourceAttribute" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Process" Member="Processes">
+    <Type Name="Process">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Process_Activity" Member="Activities" ThisKey="ID" OtherKey="Process_ID" Type="Activity" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Resource" Member="Resources">
+    <Type Name="Resource">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ResourceKind_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="[Price per hour]" Member="Price_per_hour" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Accessible_From" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Accessible_Untill" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Resource_ResourceAllocation" Member="ResourceAllocations" ThisKey="ID" OtherKey="Res_Resource_ID" Type="ResourceAllocation" />
+      <Association Name="Resource_ResourceAllocation1" Member="ResourceAllocations1" ThisKey="ID" OtherKey="Resource_ID" Type="ResourceAllocation" />
+      <Association Name="Resource_ResourceAttribute" Member="ResourceAttributes" ThisKey="ID" OtherKey="Resource_ID" Type="ResourceAttribute" />
+      <Association Name="ResourceKind_Resource" Member="ResourceKind" ThisKey="ResourceKind_ID" OtherKey="ID" Type="ResourceKind" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ResourceAllocation" Member="ResourceAllocations">
+    <Type Name="ResourceAllocation">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Resource_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Res_Resource_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Activity_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Occupied_From" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Occupied_Untill" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="ResourceAllocation_ConsumedResourceAttribute" Member="ConsumedResourceAttributes" ThisKey="ID" OtherKey="ResourceAllocation_ID" Type="ConsumedResourceAttribute" />
+      <Association Name="Resource_ResourceAllocation" Member="Resource" ThisKey="Res_Resource_ID" OtherKey="ID" Type="Resource" IsForeignKey="true" />
+      <Association Name="Resource_ResourceAllocation1" Member="Resource1" ThisKey="Resource_ID" OtherKey="ID" Type="Resource" IsForeignKey="true" />
+      <Association Name="Activity_ResourceAllocation" Member="Activity" ThisKey="Activity_ID" OtherKey="ID" Type="Activity" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ResourceAttribute" Member="ResourceAttributes">
+    <Type Name="ResourceAttribute">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Attribute_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Resource_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ConsumedResourceAttribute_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Value" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Max Value]" Member="Max_Value" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Resource_ResourceAttribute" Member="Resource" ThisKey="Resource_ID" OtherKey="ID" Type="Resource" IsForeignKey="true" />
+      <Association Name="Attribute_ResourceAttribute" Member="Attribute" ThisKey="Attribute_ID" OtherKey="ID" Type="Attribute" IsForeignKey="true" />
+      <Association Name="ConsumedResourceAttribute_ResourceAttribute" Member="ConsumedResourceAttribute" ThisKey="ConsumedResourceAttribute_ID" OtherKey="ID" Type="ConsumedResourceAttribute" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ResourceKind" Member="ResourceKinds">
+    <Type Name="ResourceKind">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Res_ResourceKind_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="ResourceKind_ResourceKindAttribute" Member="ResourceKindAttributes" ThisKey="ID" OtherKey="ResourceKind_ID" Type="ResourceKindAttribute" />
+      <Association Name="ResourceKind_Resource" Member="Resources" ThisKey="ID" OtherKey="ResourceKind_ID" Type="Resource" />
+      <Association Name="ResourceKind_ResourceKind" Member="ResourceKinds" ThisKey="ID" OtherKey="Res_ResourceKind_ID" Type="ResourceKind" />
+      <Association Name="ResourceKind_ResourceKind" Member="ResourceKind1" ThisKey="Res_ResourceKind_ID" OtherKey="ID" Type="ResourceKind" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
