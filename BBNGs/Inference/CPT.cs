@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using BBNGs;
 using BBNGs.Graph;
 using BBNGs.TraceLog;
-using BBNGs.Utilities;
 
 namespace BBNGs
 {
@@ -665,7 +664,7 @@ namespace BBNGs
                   
             }
             data = usedData.First();
-            int val = rnd.Next(0, total);
+            int val = rnd.Next(0, total+1);
             int sum = 0;
             foreach(var d in usedData)
             {

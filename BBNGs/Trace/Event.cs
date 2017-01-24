@@ -58,38 +58,30 @@ namespace BBNGs.TraceLog
             }
 
 
-            StringBuilder sb = new StringBuilder();
-            for (var i = 0; i < name.Length; i++)
-            {
-                char l = name[i];
-                if (l >= 'a' && l <= 'z' || l >= 'A' && l <= 'Z' || l >= '0' && l <= '9')
-                {
-                    sb.Append(l);
-                }
-            }
-            name = sb.ToString();
 
-            int month = this.timestamp.Month;
 
-            if (month > 1 && month < 7)
-            {
-                ProcessEvent(trace, toIgnore, new XElement("string", new XAttribute("key", "YEARTIME"), new XAttribute("value", "SPRING")));
-            }
-            else if (month >= 9)
-            {
-                ProcessEvent(trace, toIgnore, new XElement("string", new XAttribute("key", "YEARTIME"), new XAttribute("value", "AUTUMN")));
-            }
-            else
-            {
-                ProcessEvent(trace, toIgnore, new XElement("string", new XAttribute("key", "YEARTIME"), new XAttribute("value", "SUMMER")));
-            }
+
+
+            //int month = this.timestamp.Month;
+
+            //if (month > 1 && month < 7)
+            //{
+            //    ProcessEvent(trace, toIgnore, new XElement("string", new XAttribute("key", "YEARTIME"), new XAttribute("value", "SPRING")));
+            //}
+            //else if (month >= 9)
+            //{
+            //    ProcessEvent(trace, toIgnore, new XElement("string", new XAttribute("key", "YEARTIME"), new XAttribute("value", "AUTUMN")));
+            //}
+            //else
+            //{
+            //    ProcessEvent(trace, toIgnore, new XElement("string", new XAttribute("key", "YEARTIME"), new XAttribute("value", "SUMMER")));
+            //}
             //ProcessEvent(trace, toIgnore, new XElement("string", new XAttribute("key", "MONTH"), new XAttribute("value", this.timestamp.Month)));
             //ProcessEvent(trace, toIgnore, new XElement("string", new XAttribute("key", "STOJ_METAI"), new XAttribute("value", new String(trace.name.Split('_')[0].Take(4).ToArray()))));//this.EventVals["STUD_KODAS"].value)));
-
-            var eIdx = 0;
+            
 
             //for simplicity stores concatenated nametransition
-            fullName = (name.ToLower() + transition.ToLower()).Replace(" ", "_");
+            fullName = (name + transition).Replace(" ", "_");
         }
 
         private void ProcessEvent(Trace trace, List<string> toIgnore, XNode eventNode)
@@ -113,13 +105,13 @@ namespace BBNGs.TraceLog
                 timestamp = DateTime.Parse(val.value);
             //stores event activity name additionally in the object
             else if ( key == "activityNameEN")
-                name = val.value.Replace(' ', '_').ToLower();
+                name = val.value.Replace(' ', '_');
             //stores transition type additionally in the object
             else if (key == "lifecycle:transition")
                 transition = val.value;
             else if (key == "concept:name" && string.IsNullOrEmpty(name))
             {
-                name = val.value.Replace(' ', '_').ToLower();
+                name = val.value.Replace(' ', '_');
             }
             //stores attribute in the attribute list
             else if (val.value != trace.name)
@@ -127,6 +119,7 @@ namespace BBNGs.TraceLog
                     EventVals.Add(key, val);
                 else if (!toIgnore.Contains(key))
                     EventVals.Add(key, val);
+
             
         }
 
@@ -150,7 +143,7 @@ namespace BBNGs.TraceLog
                 string key = el.Attribute("key").Value;
                 //stores event activity name additionally in the object
                 if (key == "concept:name")
-                    return val.value.Replace(' ', '_').ToLower();
+                    return val.value.Replace(' ', '_');
 
             }
             return String.Empty;

@@ -146,6 +146,10 @@ namespace DBPSim.RuleEngine
             }
         }
 
+        public void ResetMemory()
+        {
+            this._workingMemory = new WorkingMemory();
+        }
 
         public CollisionSolverBase CollisionSolver
         {
@@ -296,7 +300,7 @@ namespace DBPSim.RuleEngine
             return filteredRules;
         }
 
-        private Dictionary<string,object> _plugins = new Dictionary<string, object>();
+        private static Dictionary<string,object> _plugins = new Dictionary<string, object>();
 
         public object GetPlugin(string name)
         {

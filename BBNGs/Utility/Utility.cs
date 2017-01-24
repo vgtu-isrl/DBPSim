@@ -6,9 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-
-
-namespace BBNGs.Utilities
+namespace BBNGs
 {
     public class Utility
     {
@@ -293,11 +291,10 @@ namespace BBNGs.Utilities
     public static class TransformationUtility
     {
 
-        public class Item
+        protected class Item
         {
             public string header;
             public string description;
-            public string altdescription;
             public List<string> content = new List<string>();
         }
 
@@ -320,13 +317,13 @@ namespace BBNGs.Utilities
             for (var i = 0; i < cnt.Count; i++)
             {
                 var header = cnt[i];
-                if (!header.StartsWith("============") && i!=0)
+                if (!header.StartsWith("============"))
                 {
                     continue;
                 }
 
 
-                var csidx = i + 1;
+                var csidx = i + 2;
 
                 var csedx = i + 3;
 
@@ -335,7 +332,7 @@ namespace BBNGs.Utilities
                     csedx++;
                 }
 
-                if (csidx >= cnt.Count)
+                if (csidx > cnt.Count)
                 {
                     continue;
                 }
@@ -489,70 +486,13 @@ namespace BBNGs.Utilities
             }
         }
 
-        public static void TransformMaxProbsIntoHtml(string src, string dst)
-        {
-            List<string> cnt = new List<string>();
-            using (StreamReader sr = new StreamReader(src))
-            {
-                while (!sr.EndOfStream)
-                {
-                    var line = sr.ReadLine();
-                    if (!string.IsNullOrEmpty(line))
-                    {
-                        cnt.Add(line);
-                    }
-                }
-            }
-
-            List<Item> items = new List<Item>();
-            foreach (var c in cnt)
-            {
-                var item = new Item();
-                var cc = c.Split(';');
-                item.header = cc[0];
-                item.description = cc[1].Replace("Min P(","").Replace(")","");
-                item.altdescription = cc[2].Replace("Max P(","").Replace(")","");
-                items.Add(item);
-            }
-
-            using (StreamWriter sw = new StreamWriter(dst))
-            {
-                sw.WriteLine("<html><head>");
-                sw.WriteLine("<link rel=\"stylesheet\" href=\"styles/tablestyle.css\"/>");
-                sw.WriteLine("</head><body>");
-
-                var grouped = items.GroupBy(x => x.header);
-
-                sw.WriteLine("<table class=\"responsetable\"><tr><th>Event></th><th>Probabilities</th></tr>");
-                foreach (var g in grouped)
-                {
-                    sw.WriteLine("<tr><td>"+g.Key+"</td><td>");
-                    sw.WriteLine("<table class=\"responsetable\"><th>Attribute</th><th>Min P Value</th><th>Min P</th><th>Max P value</th><th>Max P</th></tr>");
-                    foreach (var a in g)
-                    {
-                        sw.WriteLine("<tr>");
-
-                        sw.WriteLine("<td>" + a.description.Split('=')[0] + "</td>");
-                        sw.WriteLine("<td>" + a.description.Split('=')[1] + "</td>");
-                        sw.WriteLine("<td>" + a.description.Split('=')[2] + "</td>");
-                        sw.WriteLine("<td>" + a.altdescription.Split('=')[1] + "</td>");
-                        sw.WriteLine("<td>" + a.altdescription.Split('=')[2] + "</td>");
-
-                        sw.WriteLine("</tr>");
-                    }
-                    sw.WriteLine("</table>");
-                    sw.WriteLine("</tr>");
-                }
-
-                sw.WriteLine("</body></html>");
-
-            }
-        }
     }
 }
 
-namespace BBNGs.Utilities.Apriori
+namespace Apriori
 {
+
+
     public class ItemsDictionary : KeyedCollection<List<string>, Item>
     {
         protected override List<string> GetKeyForItem(Item item)

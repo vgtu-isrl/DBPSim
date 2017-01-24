@@ -12,16 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Threading;
-
-
 using BBNGs.BBNs;
 using BBNGs.Engine;
 using BBNGs.TraceLog;
 using BBNGs.Graph;
-using BBNGs.Utilities;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace BBNGs
 {
@@ -53,11 +49,9 @@ namespace BBNGs
 
             LogFileTbx.Text = Environment.CurrentDirectory + @"\BPI_Challenge_2012.xes"; //;"\vgtu\1346994030.xes";
             LogFileTbx.Text = Environment.CurrentDirectory + @"\BPIC15_5.xes";
-            LogFileTbx.Text = Environment.CurrentDirectory + @"\BPIC_15_5_1.xes";
-            //LogFileTbx.Text = Environment.CurrentDirectory + @"\1346994030.xes";
             LogFileTbx.Text = Environment.CurrentDirectory + @"\1_edit_old1.xes";
 
-          
+
 
         }
 
@@ -73,7 +67,7 @@ namespace BBNGs
              {
 
 
-                 engine.LoadXesDocument((string)filename);
+                 engine.LoadXesDocument((string)filename,true);
                  if (engine.traces != null)
                      if (engine.traces.Count > 0)
                      {
@@ -133,14 +127,11 @@ namespace BBNGs
 
         private void OutputGraphBtn_Click(object sender, RoutedEventArgs e)
         {
-            new Thread(new ThreadStart(() => { 
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
-            proc.StartInfo.FileName = @"C:\Program Files (x86)\Graphviz2.38\bin\dot.exe";
-            proc.StartInfo.Arguments = "-O -Tjpeg \"" + engine.traceTree.OutputGraphs()[0] + "\"";
+            proc.StartInfo.FileName = @"C:\Program Files (x86)\Graphviz2.38\bin\dotty.exe";
+            proc.StartInfo.Arguments = engine.traceTree.OutputGraphs()[0];
             proc.Start();
-            })).Start();
         }
-
 
         private void CleanUpTree()
         {
@@ -580,14 +571,12 @@ namespace BBNGs
                            }
                        }
                    }
-                   Utilities.TransformationUtility.TransformMaxProbsIntoHtml(Environment.CurrentDirectory + @"\maxProbs.txt", Environment.CurrentDirectory + @"\maxProbs.html");
 
                    int i = 0;
                    int failed = 0;
 
                    using (StreamWriter sw = new StreamWriter(File.Open(Environment.CurrentDirectory + @"\failedTraces_prob.txt", FileMode.Create, FileAccess.ReadWrite)))
                    {
-                       List<KeyValuePair<ReplayResult, string>> results = new List<KeyValuePair<ReplayResult, string>>();
                        for (int j = 0; j < engine.traces.Count; j++)
                            {
                                if (i++ % 250 == 0)
@@ -597,21 +586,16 @@ namespace BBNGs
                                {
                                    failed++;
                                    StringBuilder sb = new StringBuilder();
-                                    engine.traces[j].events.ForEach(x => sb.Append((x == result.failingEvent ? "{" + x.name + "}" : x.name) + "->"));
-                                    results.Add(new KeyValuePair<ReplayResult, string>(result, sb.ToString()));
+                                   engine.traces[j].events.ForEach(x => sb.Append((x == result.failingEvent ? "{" + x.name + "}" : x.name) + "->"));
+                                   sw.WriteLine(sb.ToString());
+                                   sw.WriteLine(result.reason);
+                                   sw.WriteLine("==========================================================================");
+                                   sw.WriteLine();
                                }
 
                            }
-                       results.OrderByDescending(x=>x.Key.reason).ToList().ForEach(result =>
-                       {
-                           sw.WriteLine(result.Value);
-                           sw.WriteLine(result.Key.reason);
-                           sw.WriteLine("==========================================================================");
-                           sw.WriteLine();
-                       });
                        Console.WriteLine("Complete. Overall {0} replayed with {1} failed", i, failed);
                    }
-                   Utilities.TransformationUtility.TransformAnomaliesIntoHtml(Environment.CurrentDirectory + @"\failedTraces_prob.txt", Environment.CurrentDirectory + @"\failedTraces_prob.html");
                   
                })
                ).Start();

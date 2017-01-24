@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using System.IO;
-
 using BBNGs.Graph;
 using BBNGs.TraceLog;
 using BBNGs.BBNs;
-using BBNGs.Utilities;
 using BBNGs.VariableGenerators;
 
 namespace BBNGs.Engine
@@ -79,10 +77,10 @@ namespace BBNGs.Engine
             return true;
         }
 
-        public bool LoadXesDocument(string filename)
+        public bool LoadXesDocument(string filename, bool createTrainingSet)
         {
-            List<string> attritubtesToIgnore = new List<string>() {"planned", "dateFinished",/* "org:resource",*/ "MIESTAS", "ISAK_NR", "ISAK_POTIPIS", "ISAKYMOTIPO_KODAS", "ANTR_KODAS", "ANTRASTE", "PADALINIO_PAV", "BUV_STATUSAS", "NAU_BUSENA", "STUD_KODAS", "duration"/*"BENDRABUTIS",  "MOKSLO_TRUKME", "VIDURKIS", "PILIETYBE","org:resource", "AMZIUS","LYTIS","SKOLA_EGZ","MINIMALUS", "MAKSIMALUS","GR_KALBA","PADALINIO_PAV","STUD_FORMOS_ID","KURSAS"*/};
-            List<string> eventToIgnore = new List<string>() {"s_k_i_r_i_u__stipendiją" };
+            List<string> attritubtesToIgnore = new List<string>() { };// "org:resource" };//,"action_code","activityNameNL", "dateFinished", "dueDate","planned"};
+            List<string> eventToIgnore = new List<string>() { };// "s_k_i_r_i_u__stipendiją" };
             Console.WriteLine("Extracting Traces");
             traceXesDocument = XDocument.Load(filename);
             //ClearDocument(traceXesDocument, xes);
@@ -105,16 +103,23 @@ namespace BBNGs.Engine
             //traces = traces.OrderBy(x => x.startTime).ToList();
 
             TrainingSet = new List<Trace>();
-            Random r = new Random(1);
-            int am = (int)(traces.Count * 0.70);
-            for (int k = 0; k < am; k++)
+            if (createTrainingSet)
             {
-                int idx = r.Next(traces.Count);
-                Trace t = traces[idx];
-                traces.Remove(t);
-                TrainingSet.Add(t);
+                Random r = new Random(1);
+                int am = (int)(traces.Count * 0.70);
+                for (int k = 0; k < am; k++)
+                {
+                    int idx = r.Next(traces.Count);
+                    Trace t = traces[idx];
+                    traces.Remove(t);
+                    TrainingSet.Add(t);
+                }
+                TestSet = traces;
             }
-            TestSet = traces;
+            else
+            {
+                TrainingSet = traces.ToList();
+            }
 
             //make frequency matrix
             frequencyMatrix = GetFrequencyMatrix();
@@ -192,12 +197,12 @@ namespace BBNGs.Engine
                     //if(cr>0 &&(rc<setFrequencyMatrix.AlphaLevel || src<frequencyMatrix.AlphaLevel) && scr>0)
                     
 
-                    if ((rc == 0 && cr > 0) || (cr > 0 && rc < cr * 0.02) || cr > setFrequencyMatrix.AlphaLevel && rc < Math.Sqrt(cr))
+                    if ((rc == 0 && cr > 0) || (cr > 0 && rc < cr * 0.02))
                     {
                         mustFollowMatrix.AddValue(col, row, 1);
                     }
 
-                    if (((cr > 0 && rc == 0) || (cr > setFrequencyMatrix.AlphaLevel && rc < Math.Sqrt(cr))) && scr > 0 && src < Math.Sqrt(scr))
+                    if (((cr > 0 && rc == 0) || (cr > setFrequencyMatrix.AlphaLevel && rc < cr * 0.1)) && scr > 0 && src < scr * 0.1)
                     {
                         childParentMatrix.AddValue(col, row, 1);
                     }

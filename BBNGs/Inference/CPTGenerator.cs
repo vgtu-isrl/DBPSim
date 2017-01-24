@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Concurrent;
-using System.Runtime.CompilerServices;
-using BBNGs;
 using BBNGs.Graph;
 using BBNGs.TraceLog;
-using BBNGs.Utilities;
+using BBNGs;
+using System.Collections.Concurrent;
+using System.Runtime.CompilerServices; 
 
 namespace BBNGs
 {
@@ -86,7 +85,15 @@ namespace BBNGs
                 if (column == "occured")
                 {
                    
-                    if (!ActivatedNodes.Contains(n)){ ActivatedNodes.Add(n); }
+                    if (!ActivatedNodes.Contains(n))
+                    {
+                        ActivatedNodes.Add(n);
+                    }
+                    else
+                    {
+                        ActivatedNodes.Remove(n);
+                        ActivatedNodes.Add(n);
+                    }
 
                 }
 
@@ -130,8 +137,9 @@ namespace BBNGs
         {
             ClearPredictions();
             Node startNode = null;
+            
 
-            Dictionary<Node, double> probs = new Dictionary<Node, double>();
+
             for (int i = 0; i < t.events.Count - 1; i++)
             {
                 Event e = t.events[i];
@@ -142,71 +150,36 @@ namespace BBNGs
 
                 CPT cpt = cpts[n];
 
-
-                double probOfOccurence = cpt.ProbOfOccurence();
-                if (!probs.ContainsKey(n))
-                {
-                    probs.Add(n, probOfOccurence);                    
-                }
-
+                double profOfOccurence = cpt.ProbOfOccurence();
                 double standardChance = cpt.NonCausalProbOfOccurence();
-                if (probOfOccurence < Math.Sqrt(1 + Math.Pow(standardChance, 2)) - 1)
+                if (profOfOccurence < standardChance / 10)
                     return new ReplayResult().FailAsTooLowProbability(e, n, cpts);
 
 
+                //foreach (var eVal in e.EventVals)
+                //{
+                //    ObserveVariable(n.name, eVal.Key, eVal.Value.value);
+                //}
 
                 double chance = cpts[n].ProbOfOccurence();
                 double theoreticalChance = cpts[n].NonCausalProbOfOccurence();
 
                 double totalChance = 1;
-                foreach (Node act in ActivatedNodes)
-                {
-                    if (!act.name.Contains("start_event") && !act.name.Contains("endcomplete"))
-                    {
-                        double ch = Double.NaN;
-                        var thch = cpts[act].NonCausalProbOfOccurence();
+                //foreach(Node act in ActivatedNodes)
+                //{
+                //    if(!act.name.Contains("start_event") && !act.name.Contains("endcomplete"))
+                //    {
+                //        double ch = cpts[act].ProbOfOccurence();
+                //        totalChance *= ch;
+                //        theoreticalChance *= cpts[act].NonCausalProbOfOccurence();
+                //    }
+                //}
 
-                        if (probs.ContainsKey(act))
-                        {
-                            ch = probs[act];
-                        }
-                        else
-                        {
-                            ch = cpts[act].ProbOfOccurence();
-                        }
-                        if (!double.IsNaN(ch))
-                        {
-                            totalChance *= ch;
-                        }
-                        else
-                        {
-                            totalChance *= thch;
-                        }
-                        theoreticalChance *= thch;
-                    }
-                }
-
-                var def = probs.Where(x => x.Value != 1 && !double.IsNaN(x.Value)).Count() > 0;
-                if (def)
-                {
-                    var x = 5;
-                }
-                if (totalChance > theoreticalChance && theoreticalChance < 0.8 && def)
-                {
-                    var x = 5;
-                }
-
-                foreach (var eVal in e.EventVals)
-                {
-                    ObserveVariable(n.name, eVal.Key, eVal.Value.value);
-                }
-                ObserveVariable(n.name, "occured", "1");
-
-
-                if (totalChance < Math.Sqrt(1+Math.Pow(theoreticalChance,2))-1)
+                if (totalChance < theoreticalChance * 0.01)
                     return new ReplayResult().FailAsTooLowTotalProbability(e, n, totalChance, theoreticalChance);
 
 
+                ObserveVariable(n.name, "occured", "1");
                 if (i == 0)
                 {
                     if (!ActivatedNodes.Contains(n))
@@ -235,9 +208,9 @@ namespace BBNGs
                 }
 
 
-                if (actN == null && n.parentNodes.Count > 0)
+                if (actN == null)
                 {
-                    //return new ReplayResult().FailAsFailedToFindParent(e, n);
+                    return new ReplayResult().FailAsFailedToFindParent(e, n);
                 }
 
                 ActivatedNodes.Add(n);
@@ -642,7 +615,6 @@ namespace BBNGs
 
 
             Probability p = new Probability();
-            var total = cpt.InferWhatIf(true);
             foreach (var col in columns)
             {
                 ClearObservation(n.name);
@@ -658,8 +630,7 @@ namespace BBNGs
                 {
                     cpt.ClearObservations();
                     cpt.ObserveVariable(n.name, col.Key, val);
-                    double chance = cpt.InferWhatIf(true) / total;
-                    //double c2 = ;
+                    double chance = cpt.ProbOfOccurence();
                     if (maxOccur < chance)
                     {
                         maxOccur = chance;
@@ -687,7 +658,7 @@ namespace BBNGs
         internal void GenerateDependencies()
         {
             int i = 0;
-            traceTree.distinctNodes.Values/*.AsParallel()*/.ToList().ForEach(x =>
+            traceTree.distinctNodes.Values.AsParallel().ForAll(x =>
             {
                 var atrs = x.GetAttributeList();
                 var trcs = x.NodeObjects.Select(e => e.trace);
@@ -1085,7 +1056,7 @@ namespace BBNGs
 
         public ReplayResult FailAsTooLowTotalProbability(Event e, Node n, double x, double y)
         {
-            string template = "Probabilistic anomaly for node {0}. Standard chance of chain occurrence is {1} while standard probability is {2}.\r\n";
+            string template = "Probabilistic anomaly for node {0}. Standard chance of chain occurrence is {1} while standard probability is {2}.";
             result = false;
             failingEvent = e;
             reason = String.Format(template, n.name, x, y);

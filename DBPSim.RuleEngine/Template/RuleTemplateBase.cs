@@ -198,6 +198,13 @@ namespace DBPSim.RuleEngine.Template
             }
         }
 
+        protected void RESETMEMORY()
+        {
+            this._rulesEngine.ResetMemory();
+            this._workingMemory = this._rulesEngine.WorkingMemory;
+        }
+
+
 
         protected void RETRACT(string parameterName, int duration)
         {
@@ -323,7 +330,7 @@ namespace DBPSim.RuleEngine.Template
             if (engine == null)
             {
                 engine = new BBNGs.Engine.BBNGine();
-                engine.LoadXesDocument(filename);
+                engine.LoadXesDocument(filename,false);
                 this.Rule.RulesEngine.AddPlugin("bbngs", engine);
                 engine.ExtractDistinctEvents();
                 engine.ExtractTree();
@@ -340,7 +347,7 @@ namespace DBPSim.RuleEngine.Template
                     new XElement("Enabled","True"),
                     new XElement("Title",node.Key),
                     new XElement("Priority","10"),
-                    new XElement("Condition","Fact.Exists(\"started\") And BBNG_ISNEXTEVENT(\""+node.Key+"\")"),
+                    new XElement("Condition", "Fact.Exists(\"started\") And BBNG_ISNEXTEVENT(\"" + node.Key+"\")"),
                     new XElement("Body","BBNG_OBSERVEVALUE(\""+node.Key+ "\",\"occured\",\"1\")\r\nBBNG_OBSERVEGENERATEDDATA(\"" + node.Key+ "\")\r\nBBNG_OBSERVEVALUE(\"" + node.Key + "\",\"previous\",\"1\") ")// "Create(\"Fired "+node.Key+ "\")\r\n")
                     );
                 rules.Add(rule);
@@ -438,12 +445,27 @@ namespace DBPSim.RuleEngine.Template
             var data = engine.probs.GenerateData(node);
             if(data != null)
             {
+
+                CREATE(node);
+                var ob = (IDictionary<string, object>)(this._workingMemory[node]);
                 foreach (var x in data.data)
                 {
-                    if (x.Key.StartsWith(node))
+                    if (x.Key !="count")
                     {
-                        engine.probs.ObserveVariable(node, x.Key.Remove(0, x.Key.LastIndexOf('_') + 1), x.Value);
-                        INSERT(x.Key, new Dictionary<string, object>() { { "value", x.Value } });
+                        var key = x.Key.Remove(0, x.Key.LastIndexOf('_') + 1);
+                        engine.probs.ObserveVariable(node, key, x.Value);
+                        
+
+                        if (!ob.ContainsKey(key))
+                        {
+                            ob.Add(key, x.Value);
+                        }
+                        else
+                        {
+                            ob[key] = x.Value;
+                        }
+                        
+                        //INSERT(node, new Dictionary<string, object>() { { "value", x.Value } });
                     }
                 }
             }
